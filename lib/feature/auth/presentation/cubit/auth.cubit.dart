@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
 
         emit(AuthSuccess());
       } else {
-        emit(AuthError(error: "something went wrong"));
+        emit(AuthError(error: "something went wrong   "));
       }
     });
   }
