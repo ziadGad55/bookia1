@@ -26,8 +26,10 @@ class Cart extends StatelessWidget {
           ),
         ),
         body: BlocConsumer<CartCubit, CartState>(
+         
           listener: (context, state) {},
           builder: (context, state) {
+            
             if (state is CartLoaded) {
               var books =
                   context.read<CartCubit>().cartrespons?.data?.cartItems ?? [];
@@ -66,6 +68,7 @@ class Cart extends StatelessWidget {
                             },
                             itemBuilder: (BuildContext context, int index) {
                               return cartbook(
+                               
                                 book: books[index],
                                 onremove: () {
                                   context
@@ -92,7 +95,7 @@ class Cart extends StatelessWidget {
                                     errortoast("Cannot Delete More", context);
                                   }
                         
-                                },
+                                }, 
                               );
                             },
                           ),
