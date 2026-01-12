@@ -5,6 +5,7 @@ import 'package:bookia1/core/widget/error.dart';
 
 import 'package:bookia1/feature/cart/presentation/cubit/cubit/cartcubit_cubit.dart';
 import 'package:bookia1/feature/cart/presentation/widget/cart.dart';
+import 'package:bookia1/feature/order/presentation/page/place_order.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -121,7 +122,9 @@ class Cart extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(20),
-                            child: buttom(text: "Checkout", onPressed: (){},),
+                            child: buttom(text: "Checkout", onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>PlaceOrder()));
+                            },),
                           )
                         ],
                       )
