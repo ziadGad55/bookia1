@@ -10,7 +10,9 @@ class cartbook extends StatelessWidget {
   const cartbook({
     super.key,
     required this.book,
-    this.onremove, required this.onadd, required this.onminus,
+    this.onremove,
+    required this.onadd,
+    required this.onminus,
   });
   final CartItem book;
   final Function()? onremove;

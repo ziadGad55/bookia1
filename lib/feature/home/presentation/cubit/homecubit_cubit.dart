@@ -39,7 +39,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(addWishlistcartLoading());
     await Homerepo.addtowishlist(productid).then((value) {
       if (value != null) {
-        emit(addWishlistcartLoaded( "Added To Wishlist"));
+        emit(addWishlistcartLoaded("Added To Wishlist"));
       } else {
         emit(addWishlistcartError("error"));
       }

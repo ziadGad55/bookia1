@@ -9,7 +9,8 @@ class wishlistbook extends StatelessWidget {
   const wishlistbook({
     super.key,
     required this.book,
-    this.onremove, required this.onaddtocart,
+    this.onremove,
+    required this.onaddtocart,
   });
 
   final Datum book;

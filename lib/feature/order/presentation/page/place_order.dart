@@ -6,20 +6,31 @@ import 'package:bookia1/core/widget/error.dart';
 import 'package:bookia1/core/widget/loading.dart';
 import 'package:bookia1/feature/auth/presentation/cubit/auth.cubit.dart';
 import 'package:bookia1/feature/auth/presentation/cubit/auth_state.dart';
+import 'package:bookia1/feature/cart/data/model/checkout/data.dart';
+import 'package:bookia1/feature/cart/presentation/cubit/cubit/cartcubit_cubit.dart';
 import 'package:bookia1/feature/main/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PlaceOrder extends StatefulWidget {
-  PlaceOrder({super.key});
+  PlaceOrder({super.key, required this.total,   });
+
+    
 
   @override
+final String total;
   State<PlaceOrder> createState() => _PlaceOrderState();
 }
 
+@override
+
+  
+
+
 class _PlaceOrderState extends State<PlaceOrder> {
   @override
+
   String thisAddress = 'cairo';
 
   TextEditingController nameController = TextEditingController();
@@ -34,22 +45,22 @@ class _PlaceOrderState extends State<PlaceOrder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: back_arrow(context),
-      body: BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state is AuthSuccess) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-              (route) => false,
-            );
-          } else if (state is AuthError) {
-            Navigator.pop(context);
-            errortoast(state.error, context);
-          } else if (state is AuthLoading) {
-            loading(context);
-          }
-        },
-        child: SingleChildScrollView(
+      // body: BlocListener<AuthCubit, AuthState>(
+      //   listener: (context, state) {
+      //     if (state is AuthSuccess) {
+      //       Navigator.pushAndRemoveUntil(
+      //         context,
+      //         MaterialPageRoute(builder: (context) => Home()),
+      //         (route) => false,
+      //       );
+      //     } else if (state is AuthError) {
+      //       Navigator.pop(context);
+      //       errortoast(state.error, context);
+      //     } else if (state is AuthLoading) {
+      //       loading(context);
+      //     }
+      //   },
+        body:  SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(22),
             child: Expanded(
@@ -129,12 +140,16 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           items: ['cairo', 'giza', 'alex']
                               .map((city) => DropdownMenuItem(
                                     value: city,
-                                    child: Text(city,style: appTextStyle(color: appcolors.dark_gray),),
+                                    child: Text(
+                                      city,
+                                      style: appTextStyle(
+                                          color: appcolors.dark_gray),
+                                    ),
                                   ))
                               .toList(),
                           onChanged: (value) {
                             setState(() {
-                              thisAddress = value??thisAddress[0];
+                              thisAddress = value ?? thisAddress[0];
                             });
                           })),
                   SizedBox(height: 150),
@@ -143,11 +158,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     children: [
                       Text(
                         'Total: ',
-                        style:
-                            appTextStyle(size: 25, color: appcolors.dark_gray),
+                        style: appTextStyle(
+                            size: 25, color: appcolors.dark_gray),
                       ),
                       Text(
-                        '\$',
+                        '\$ ${ widget.total }',
                         style: appTextStyle(size: 25),
                       ),
                     ],
@@ -164,7 +179,6 @@ class _PlaceOrderState extends State<PlaceOrder> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

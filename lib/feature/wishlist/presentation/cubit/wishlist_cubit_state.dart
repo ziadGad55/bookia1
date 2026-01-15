@@ -13,7 +13,6 @@ final class WishlistCubitError extends WishlistCubitState {
   WishlistCubitError(this.message);
 }
 
-
 final class cartCubitLoading extends WishlistCubitState {}
 
 final class cartCubitSuccess extends WishlistCubitState {}
@@ -22,6 +21,3 @@ final class cartCubitError extends WishlistCubitState {
   final String message;
   cartCubitError(this.message);
 }
-
-
-
