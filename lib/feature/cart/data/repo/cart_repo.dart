@@ -62,15 +62,15 @@ class cartRepo {
 
 
 
-  static Future<bool?> checkout() async {
+  static Future<checkoutrespons?> checkout() async {
     try {
       var response = await dioprovider.get(endpoint: 'checkout', headers: {
         'Authorization': 'Bearer ${appdata.getdata(appdata.usertoken)}'
       });
       if (response.statusCode == 200) {
-        return true;
+        return checkoutrespons.fromJson(response.data);
       } else {
-        return false;
+        return null;
       }
     } on Exception catch (e) {
       log(e.toString());

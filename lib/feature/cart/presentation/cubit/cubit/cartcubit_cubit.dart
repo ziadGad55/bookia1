@@ -10,6 +10,7 @@ class CartCubit extends Cubit<CartState> {
 
   Cartrespons? cartrespons;
 
+  checkoutrespons? checkoutResponses;
 
   Future<void> getcart() async {
     emit(CartLoading());
@@ -50,8 +51,8 @@ class CartCubit extends Cubit<CartState> {
   Future<void> Checkout() async {
     emit(CheckoutLoading());
     await cartRepo.checkout().then((value) {
-      if (value == true) {
-        emit(CheckoutLoaded());
+      if (value != null) {
+        emit(CheckoutLoaded((value.data?.total ?? 0).toString()));
       } else {
         emit(CartError('error'));
       }

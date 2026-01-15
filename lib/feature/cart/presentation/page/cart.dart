@@ -35,10 +35,8 @@ class Cart extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => PlaceOrder(
-                    total:
-                        (context.read<CartCubit>().cartrespons?.data?.total ??
-                                1)
-                            .toString(),
+                    total:state.total,
+                        
                   ),
                 ),
               );
