@@ -1,5 +1,6 @@
 import 'package:bookia1/core/color/colors.dart';
 import 'package:bookia1/core/fonts/font_style.dart';
+import 'package:bookia1/core/services/cashing.dart';
 import 'package:bookia1/core/widget/arrow.dart';
 import 'package:bookia1/core/widget/buttom.dart';
 import 'package:bookia1/core/widget/error.dart';
@@ -27,6 +28,8 @@ class RegisterScreem extends StatelessWidget {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
+            appdata.cashdata(appdata.name, nameController.text);
+            appdata.cashdata(appdata.email, emailController.text);
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => Home()),

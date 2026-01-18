@@ -8,6 +8,15 @@ final class OrderLoading extends OrdercubitState {}
 
 final class OrderLoaded extends OrdercubitState {}
 
+final class Ordersubmitloading extends OrdercubitState {}
+
+final class OrdersubmitLoaded extends OrdercubitState {}
+
+final class OrdersubmitError extends OrdercubitState {
+  final String error;
+  OrdersubmitError(this.error);
+}
+
 final class OrderError extends OrdercubitState {
   final String error;
   OrderError(this.error);

@@ -12,7 +12,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dioprovider.init();
   await appdata.init();
-  runApp( MultiBlocProvider(
+  runApp(
+    MultiBlocProvider(
       providers: [
         BlocProvider<CartCubit>(
           create: (context) => CartCubit(),
@@ -20,8 +21,9 @@ Future<void> main() async {
         BlocProvider<AuthCubit>(
           create: (context) => AuthCubit(),
         ),
-      ], child: const MyApp(),
-  ),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -31,31 +33,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-            appBarTheme: AppBarTheme(),
-            inputDecorationTheme: InputDecorationTheme(
-              fillColor: appcolors.gray,
-              filled: true,
-              hintStyle: appTextStyle(size: 15, color: appcolors.gray),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: appcolors.gray),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: appcolors.gray),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.red),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.red),
-              ),
-            )),
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
-      );
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(),
+          inputDecorationTheme: InputDecorationTheme(
+            fillColor: appcolors.gray,
+            filled: true,
+            hintStyle: appTextStyle(size: 15, color: appcolors.gray),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: appcolors.gray),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: appcolors.gray),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.red),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.red),
+            ),
+          )),
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
+    );
   }
 }

@@ -1,15 +1,14 @@
 import 'data.dart';
 
-class checkoutrespons {
+class OrderRespons {
   Data? data;
   String? message;
   List<dynamic>? error;
   int? status;
 
-  checkoutrespons({this.data, this.message, this.error, this.status});
+  OrderRespons({this.data, this.message, this.error, this.status});
 
-  factory checkoutrespons.fromJson(Map<String, dynamic> json) =>
-      checkoutrespons(
+  factory OrderRespons.fromJson(Map<String, dynamic> json) => OrderRespons(
         data: json['data'] == null
             ? null
             : Data.fromJson(json['data'] as Map<String, dynamic>),

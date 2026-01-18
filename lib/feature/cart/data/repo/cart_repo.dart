@@ -60,8 +60,6 @@ class cartRepo {
     }
   }
 
-
-
   static Future<checkoutrespons?> checkout() async {
     try {
       var response = await dioprovider.get(endpoint: 'checkout', headers: {

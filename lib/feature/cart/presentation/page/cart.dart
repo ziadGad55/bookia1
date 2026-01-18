@@ -3,7 +3,7 @@ import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:bookia1/core/widget/buttom.dart';
 import 'package:bookia1/core/widget/error.dart';
 import 'package:bookia1/core/widget/loading.dart';
-import 'package:bookia1/feature/auth/data/models/response/auth_response/data.dart';
+
 
 import 'package:bookia1/feature/cart/presentation/cubit/cubit/cartcubit_cubit.dart';
 import 'package:bookia1/feature/cart/presentation/widget/cart.dart';
@@ -30,13 +30,11 @@ class Cart extends StatelessWidget {
         body: BlocConsumer<CartCubit, CartState>(
           listener: (context, state) {
             if (state is CheckoutLoaded) {
-              Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => PlaceOrder(
-                    total:state.total,
-                        
+                    total: state.total,
                   ),
                 ),
               );

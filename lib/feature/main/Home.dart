@@ -1,6 +1,7 @@
 import 'package:bookia1/core/color/colors.dart';
 import 'package:bookia1/feature/cart/presentation/page/cart.dart';
 import 'package:bookia1/feature/home/presentation/pages/shop_screen.dart';
+import 'package:bookia1/feature/profile/presentation/page/profile_screen.dart';
 import 'package:bookia1/feature/wishlist/presentation/page/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
     ShopScreen(),
     Wishlist(),
     Cart(),
-    ShopScreen(),
+    ProfileScreen(),
   ];
   int currentIndex = 0;
   @override
