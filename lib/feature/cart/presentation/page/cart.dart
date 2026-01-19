@@ -4,7 +4,6 @@ import 'package:bookia1/core/widget/buttom.dart';
 import 'package:bookia1/core/widget/error.dart';
 import 'package:bookia1/core/widget/loading.dart';
 
-
 import 'package:bookia1/feature/cart/presentation/cubit/cubit/cartcubit_cubit.dart';
 import 'package:bookia1/feature/cart/presentation/widget/cart.dart';
 import 'package:bookia1/feature/order/presentation/page/place_order.dart';

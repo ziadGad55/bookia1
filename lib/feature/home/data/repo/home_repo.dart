@@ -69,4 +69,18 @@ class Homerepo {
       return false;
     }
   }
+
+  static Future<BestsellerRespons?> getAllProdact() async {
+    try {
+      var respons = await dioprovider.get(endpoint: 'products');
+      if (respons.statusCode == 200) {
+        return BestsellerRespons.fromJson(respons.data);
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:bookia1/feature/home/presentation/cubit/homecubit_cubit.dart';
+import 'package:bookia1/feature/home/presentation/pages/search/search_screen.dart';
 import 'package:bookia1/feature/home/presentation/widget/homeslider.dart';
 import 'package:bookia1/feature/home/presentation/widget/item_book.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,10 @@ class ShopScreen extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/search-normal.svg"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchScreen()));
+                },
               ),
             ],
           ),

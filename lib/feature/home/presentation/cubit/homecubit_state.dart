@@ -33,3 +33,12 @@ final class addWishlistcartError extends HomeState {
   final String message;
   addWishlistcartError(this.message);
 }
+
+final class AllprodactLoading extends HomeState {}
+
+final class AllprodactLoaded extends HomeState {}
+
+final class AllprodactError extends HomeState {
+  final String message;
+  AllprodactError(this.message);
+}

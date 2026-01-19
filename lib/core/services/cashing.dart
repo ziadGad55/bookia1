@@ -8,7 +8,6 @@ class appdata {
   static String name = 'name';
   static String email = 'email';
 
-
   static init() async {
     cash = await SharedPreferences.getInstance();
   }

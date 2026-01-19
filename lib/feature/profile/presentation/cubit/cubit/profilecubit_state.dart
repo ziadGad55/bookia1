@@ -12,3 +12,12 @@ final class ProfileError extends ProfileState {
   final String message;
   ProfileError(this.message);
 }
+
+final class ExitLoading extends ProfileState {}
+
+final class ExitLoaded extends ProfileState {}
+
+final class ExitError extends ProfileState {
+  final String message;
+  ExitError(this.message);
+}
