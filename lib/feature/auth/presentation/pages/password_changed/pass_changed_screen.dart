@@ -3,6 +3,7 @@ import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:bookia1/core/widget/buttom.dart';
 import 'package:bookia1/feature/auth/presentation/pages/Login/Login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PassChangedScreen extends StatelessWidget {
@@ -21,11 +22,11 @@ class PassChangedScreen extends StatelessWidget {
             SizedBox(
               height: 35,
             ),
-            Text("Password Changed!", style: appTextStyle(size: 30)),
+            Text("Password Changed!", style: appTextStyle(size: 30.sp)),
             Text("Your password has been changed successfully.",
-                style: appTextStyle(size: 16, color: appcolors.dark_gray)),
+                style: appTextStyle(size: 16.sp, color: appcolors.dark_gray)),
             SizedBox(
-              height: 40,
+              height: 40.h,
             ),
             buttom(
                 text: "Back to Login",

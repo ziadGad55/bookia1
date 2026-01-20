@@ -4,6 +4,7 @@ import 'package:bookia1/feature/home/presentation/widget/homeslider.dart';
 import 'package:bookia1/feature/home/presentation/widget/item_book.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ShopScreen extends StatelessWidget {
@@ -39,10 +40,10 @@ class ShopScreen extends StatelessWidget {
               children: [
                 homeslider(),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding:  EdgeInsets.all(20.r),
                   child: item_book(),
                 )
               ],

@@ -9,6 +9,7 @@ import 'package:bookia1/feature/profile/presentation/cubit/cubit/profilecubit_cu
 import 'package:bookia1/feature/profile/presentation/page/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditPassword extends StatefulWidget {
   EditPassword({super.key});
@@ -18,6 +19,8 @@ class EditPassword extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditPassword> {
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
   final TextEditingController currentpassController = TextEditingController();
 
   final TextEditingController newpasscontroller = TextEditingController();
@@ -59,65 +62,99 @@ class _EditProfileState extends State<EditPassword> {
               actions: [
                 Text(
                   'New Password',
-                  style: appTextStyle(size: 25),
+                  style: appTextStyle(size: 25.sp),
                 ),
                 SizedBox(
-                  width: 125,
+                  width: 95.w,
                 ),
               ],
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(22),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Spacer(),
-                  TextFormField(
-                    controller: currentpassController,
-                    decoration: InputDecoration(
-                      hintText: " Current Password",
-                      hintStyle:
-                          appTextStyle(size: 15, color: appcolors.dark_gray),
+            body: Form(
+              key: formkey,
+              child: Padding(
+                padding: const EdgeInsets.all(22),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Spacer(),
+                    TextFormField(
+                      controller: currentpassController,
+                      decoration: InputDecoration(
+                        hintText: " Current Password",
+                        hintStyle:
+                            appTextStyle(size: 15, color: appcolors.dark_gray),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Password required';
+                        } else if (value.length < 9) {
+                          return 'Password must be more than 9 characters';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: newpasscontroller,
-                    decoration: InputDecoration(
-                      hintText: "New password",
-                      hintStyle:
-                          appTextStyle(size: 15, color: appcolors.dark_gray),
+                    SizedBox(
+                      height: 20.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: confirmpasscontroller,
-                    decoration: InputDecoration(
-                      hintText: "Confirm Password",
-                      hintStyle:
-                          appTextStyle(size: 15, color: appcolors.dark_gray),
+                    TextFormField(
+                      controller: newpasscontroller,
+                      decoration: InputDecoration(
+                        hintText: "New password",
+                        hintStyle:
+                            appTextStyle(size: 15.sp, color: appcolors.dark_gray),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Password required';
+                        } else if (value.length < 9) {
+                          return 'Password must be more than 9 characters';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                  ),
-                  Spacer(),
-                  BlocBuilder<ProfileCubit, ProfileState>(
-                    builder: (context, state) {
-                      return buttom(
-                        text: "Update Password",
-                        onPressed: () {
-                          context.read<ProfileCubit>().EditPassword(EditPass(
-                              currentassword: currentpassController.text,
-                              newpassword: newpasscontroller.text,
-                              newpasswordconfirmation:
-                                  confirmpasscontroller.text));
-                        },
-                      );
-                    },
-                  ),
-                ],
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    TextFormField(
+                      controller: confirmpasscontroller,
+                      decoration: InputDecoration(
+                        hintText: "Confirm Password",
+                        hintStyle:
+                            appTextStyle(size: 15.sp, color: appcolors.dark_gray),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Password required';
+                        } else if (value.length < 9) {
+                          return 'Password must be more than 9 characters';
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                    Spacer(),
+                    BlocBuilder<ProfileCubit, ProfileState>(
+                      builder: (context, state) {
+                        return buttom(
+                          text: "Update Password",
+                          onPressed: () {
+                            if (formkey.currentState!.validate()) {
+                              context.read<ProfileCubit>().EditPassword(
+                                  EditPass(
+                                      currentassword:
+                                          currentpassController.text,
+                                      newpassword: newpasscontroller.text,
+                                      newpasswordconfirmation:
+                                          confirmpasscontroller.text));
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

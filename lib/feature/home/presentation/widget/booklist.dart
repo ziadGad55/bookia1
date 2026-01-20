@@ -5,6 +5,7 @@ import 'package:bookia1/feature/home/data/model/bestseller_respons/product.dart'
 import 'package:bookia1/feature/home/presentation/pages/book.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class booklist extends StatelessWidget {
   const booklist({
@@ -25,9 +26,9 @@ class booklist extends StatelessWidget {
       child: Container(
           decoration: BoxDecoration(
               color: Color(0xffF5EFE1),
-              borderRadius: BorderRadius.circular(10)),
+              borderRadius: BorderRadius.circular(10.r)),
           child: Padding(
-            padding: const EdgeInsets.all(11),
+            padding:  EdgeInsets.all(6.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -35,7 +36,7 @@ class booklist extends StatelessWidget {
                     child: Hero(
                   tag: book.id ?? '',
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
                       imageUrl: book.image ?? '',
                       fit: BoxFit.cover,
@@ -47,30 +48,30 @@ class booklist extends StatelessWidget {
                   ),
                 )),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   book.name ?? '',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: appTextStyle(size: 20),
+                  style: appTextStyle(size: 20.sp),
                 ),
                 SizedBox(
-                  height: 25,
+                  height: 25.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "₹ ${book.priceAfterDiscount}",
-                      style: appTextStyle(size: 20),
+                      style: appTextStyle(size: 20.sp),
                     ),
                     buttom(
                       text: "Buy",
                       onPressed: () {},
                       color: appcolors.black,
-                      width: 80,
-                      height: 35,
+                      width: 68.w,
+                      height: 30.h,
                     )
                   ],
                 )

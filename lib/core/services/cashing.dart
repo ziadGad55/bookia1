@@ -5,8 +5,6 @@ class appdata {
 
   static String usertoken = 'token';
   static String myorderid = 'myorderid';
-  static String name = 'name';
-  static String email = 'email';
 
   static init() async {
     cash = await SharedPreferences.getInstance();

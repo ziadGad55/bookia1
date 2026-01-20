@@ -10,6 +10,7 @@ import 'package:bookia1/feature/order/presentation/page/place_order.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Cart extends StatelessWidget {
   const Cart({super.key});
@@ -23,12 +24,13 @@ class Cart extends StatelessWidget {
           centerTitle: true,
           title: Text(
             'cart',
-            style: appTextStyle(size: 25),
+            style: appTextStyle(size: 25.sp),
           ),
         ),
         body: BlocConsumer<CartCubit, CartState>(
           listener: (context, state) {
             if (state is CheckoutLoaded) {
+               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -61,12 +63,12 @@ class Cart extends StatelessWidget {
                             color: appcolors.prime,
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Text(
                             'No Items in cart',
                             style:
-                                appTextStyle(size: 25, color: appcolors.prime),
+                                appTextStyle(size: 25.sp, color: appcolors.prime),
                           ),
                         ],
                       ),
@@ -119,7 +121,7 @@ class Cart extends StatelessWidget {
                           children: [
                             Divider(
                               color: Colors.grey,
-                              height: 30,
+                              height: 30.h,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
@@ -130,11 +132,11 @@ class Cart extends StatelessWidget {
                                   Text(
                                     'Total: ',
                                     style: appTextStyle(
-                                        size: 25, color: appcolors.dark_gray),
+                                        size: 25.sp, color: appcolors.dark_gray),
                                   ),
                                   Text(
                                     '\$${context.read<CartCubit>().cartrespons?.data?.total}',
-                                    style: appTextStyle(size: 25),
+                                    style: appTextStyle(size: 25.sp),
                                   ),
                                 ],
                               ),

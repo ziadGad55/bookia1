@@ -3,6 +3,7 @@ import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:bookia1/core/widget/buttom.dart';
 import 'package:bookia1/feature/order/presentation/page/place_order.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class bottom_of_widget extends StatelessWidget {
   const bottom_of_widget({
@@ -23,16 +24,16 @@ class bottom_of_widget extends StatelessWidget {
           children: [
             Text(
               'Total: ',
-              style: appTextStyle(size: 25, color: appcolors.dark_gray),
+              style: appTextStyle(size: 25.sp, color: appcolors.dark_gray),
             ),
             Text(
               '\$ ${widget.total}',
-              style: appTextStyle(size: 25),
+              style: appTextStyle(size: 25.sp),
             ),
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 10.h,
         ),
         buttom(
           text: "Submit Order",

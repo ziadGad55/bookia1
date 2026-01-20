@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class homeslider extends StatefulWidget {
@@ -35,14 +36,14 @@ class _homesliderState extends State<homeslider> {
                   itemBuilder: (BuildContext context, int itemindex,
                           int pageviewindex) =>
                       ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.r),
                           child: CachedNetworkImage(
                             imageUrl: sliderdata[itemindex].image ?? '',
                             fit: BoxFit.cover,
                             width: double.infinity,
                           )),
                   options: CarouselOptions(
-                    height: 150,
+                    height: 130.h,
                     aspectRatio: 16 / 9,
                     viewportFraction: 0.9,
                     initialPage: 0,
@@ -62,18 +63,18 @@ class _homesliderState extends State<homeslider> {
                     scrollDirection: Axis.horizontal,
                   )),
               SizedBox(
-                height: 14,
+                height: 14.h,
               ),
               SmoothPageIndicator(
                   controller: PageController(initialPage: currentIndex),
                   count: 3,
                   effect: ExpandingDotsEffect(
-                      dotWidth: 8,
-                      dotHeight: 8,
+                      dotWidth: 8.w,
+                      dotHeight: 8.h,
                       expansionFactor: 7,
                       dotColor: Colors.grey,
                       activeDotColor: appcolors.prime,
-                      spacing: 5),
+                      spacing: 5.w),
                   onDotClicked: (index) {})
             ],
           );

@@ -1,5 +1,6 @@
 import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class field extends StatelessWidget {
   const field({
@@ -21,9 +22,9 @@ class field extends StatelessWidget {
           decoration: InputDecoration(
               fillColor: Color(0xffF7F8F9),
               filled: true,
-              hintStyle: appTextStyle(size: 15, color: Color(0xff8391A1)),
+              hintStyle: appTextStyle(size: 15.sp, color: Color(0xff8391A1)),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.r),
               ))),
     );
   }

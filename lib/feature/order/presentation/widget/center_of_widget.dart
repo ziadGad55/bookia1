@@ -1,6 +1,8 @@
 import 'package:bookia1/core/color/colors.dart';
+import 'package:bookia1/core/constant/emailvalidation.dart';
 import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class center_of_widget extends StatelessWidget {
   const center_of_widget({
@@ -9,8 +11,10 @@ class center_of_widget extends StatelessWidget {
     required this.emailController,
     required this.Addresscontroller,
     required this.Phonecontroller,
+    required this.formkey,
   });
 
+  final GlobalKey formkey;
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController Addresscontroller;
@@ -22,17 +26,17 @@ class center_of_widget extends StatelessWidget {
       children: [
         Text(
           "Place Your Order",
-          style: appTextStyle(size: 33),
+          style: appTextStyle(size: 33.sp),
         ),
         SizedBox(
-          height: 10,
+          height: 10.h,
         ),
         Text(
           "Don't worry! It occurs. Please enter the email address linked with your account.",
-          style: appTextStyle(size: 15, color: appcolors.dark_gray),
+          style: appTextStyle(size: 15.sp, color: appcolors.dark_gray),
         ),
         SizedBox(
-          height: 25,
+          height: 25.h,
         ),
         TextFormField(
           controller: nameController,
@@ -40,9 +44,16 @@ class center_of_widget extends StatelessWidget {
             hintText: "Full Name",
             hintStyle: appTextStyle(size: 15, color: appcolors.dark_gray),
           ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Name required';
+            } else {
+              return null;
+            }
+          },
         ),
         SizedBox(
-          height: 12,
+          height: 12.h,
         ),
         TextFormField(
           keyboardType: TextInputType.emailAddress,
@@ -51,9 +62,18 @@ class center_of_widget extends StatelessWidget {
             hintText: "Email",
             hintStyle: appTextStyle(size: 15, color: appcolors.dark_gray),
           ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Email required';
+            } else if (!emailValidate(value)) {
+              return 'Enter your Email correct';
+            } else {
+              return null;
+            }
+          },
         ),
         SizedBox(
-          height: 12,
+          height: 12.h,
         ),
         TextFormField(
           controller: Addresscontroller,
@@ -61,17 +81,34 @@ class center_of_widget extends StatelessWidget {
             hintText: "Address",
             hintStyle: appTextStyle(size: 15, color: appcolors.dark_gray),
           ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'address required';
+            } else {
+              return null;
+            }
+          },
         ),
         SizedBox(
-          height: 12,
+          height: 12.h,
         ),
         TextFormField(
           keyboardType: TextInputType.phone,
           controller: Phonecontroller,
           decoration: InputDecoration(
             hintText: "Phone",
-            hintStyle: appTextStyle(size: 15, color: appcolors.dark_gray),
+            hintStyle: appTextStyle(size: 15.sp, color: appcolors.dark_gray),
           ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'address required';
+            } else if( value.length!=11){
+              return 'please Enter your number correct';
+            }
+            else {
+              return null;
+            }
+          },
         ),
       ],
     );

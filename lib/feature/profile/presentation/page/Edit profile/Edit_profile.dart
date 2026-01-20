@@ -9,6 +9,7 @@ import 'package:bookia1/feature/profile/presentation/cubit/cubit/profilecubit_cu
 import 'package:bookia1/feature/profile/presentation/page/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditProfile extends StatefulWidget {
   EditProfile({super.key});
@@ -18,6 +19,8 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
   final TextEditingController nameController = TextEditingController();
 
   final TextEditingController Addresscontroller = TextEditingController();
@@ -59,66 +62,94 @@ class _EditProfileState extends State<EditProfile> {
               actions: [
                 Text(
                   'Edit Profile',
-                  style: appTextStyle(size: 25),
+                  style: appTextStyle(size: 25.sp),
                 ),
                 SizedBox(
-                  width: 135,
+                  width: 115.w,
                 ),
               ],
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(22),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Spacer(),
-                  TextFormField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      hintText: "Full Name",
-                      hintStyle:
-                          appTextStyle(size: 15, color: appcolors.dark_gray),
+            body: Form(
+              key: formkey,
+              child: Padding(
+                padding: const EdgeInsets.all(22),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Spacer(),
+                    TextFormField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        hintText: "Full Name",
+                        hintStyle:
+                            appTextStyle(size: 15.sp, color: appcolors.dark_gray),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Name required';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.phone,
-                    controller: Phonecontroller,
-                    decoration: InputDecoration(
-                      hintText: "phone",
-                      hintStyle:
-                          appTextStyle(size: 15, color: appcolors.dark_gray),
+                    SizedBox(
+                      height: 20.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: Addresscontroller,
-                    decoration: InputDecoration(
-                      hintText: "Address",
-                      hintStyle:
-                          appTextStyle(size: 15, color: appcolors.dark_gray),
+                    TextFormField(
+                      keyboardType: TextInputType.phone,
+                      controller: Phonecontroller,
+                      decoration: InputDecoration(
+                        hintText: "phone",
+                        hintStyle:
+                            appTextStyle(size: 15.sp, color: appcolors.dark_gray),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'address required';
+                        } else if (value.length != 11) {
+                          return 'please Enter your number correct';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                  ),
-                  Spacer(),
-                  BlocBuilder<ProfileCubit, ProfileState>(
-                    builder: (context, state) {
-                      return buttom(
-                        text: "Update Profile",
-                        onPressed: () {
-                          context.read<ProfileCubit>().EditProfile(
-                              Editprofilerequest(
-                                  name: nameController.text,
-                                  address: Addresscontroller.text,
-                                  phone: Phonecontroller.text));
-                        },
-                      );
-                    },
-                  ),
-                ],
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    TextFormField(
+                      controller: Addresscontroller,
+                      decoration: InputDecoration(
+                        hintText: "Address",
+                        hintStyle:
+                            appTextStyle(size: 15.sp, color: appcolors.dark_gray),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'address required';
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                    Spacer(),
+                    BlocBuilder<ProfileCubit, ProfileState>(
+                      builder: (context, state) {
+                        return buttom(
+                          text: "Update Profile",
+                          onPressed: () {
+                            if (formkey.currentState!.validate()) {
+                              context.read<ProfileCubit>().EditProfile(
+                                  Editprofilerequest(
+                                      name: nameController.text,
+                                      address: Addresscontroller.text,
+                                      phone: Phonecontroller.text));
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

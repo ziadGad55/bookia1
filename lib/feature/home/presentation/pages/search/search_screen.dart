@@ -6,6 +6,7 @@ import 'package:bookia1/feature/home/presentation/cubit/homecubit_cubit.dart';
 import 'package:bookia1/feature/home/presentation/widget/booklist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -21,6 +22,13 @@ class _SearchScreenState extends State<SearchScreen> {
   bool searching = false;
 
   @override
+  void dispose() {
+
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeCubit()..getAllProdact(),
@@ -34,7 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 automaticallyImplyLeading: false,
               ),
               body: Padding(
-                  padding: const EdgeInsets.all(22),
+                  padding:  EdgeInsets.all(18.r),
                   child: BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       var books = context
@@ -49,7 +57,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             Column(
                               children: [
                                 SizedBox(
-                                  height: 50,
+                                  height: 50.h,
                                   width: double.infinity,
                                   child: TextField(
                                       onTap: () => setState(() {
@@ -71,7 +79,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       decoration: InputDecoration(
                                           hintText: "Search",
                                           hintStyle: appTextStyle(
-                                            size: 18,
+                                            size: 18.sp,
                                             color: appcolors.dark_gray,
                                           ),
                                           prefixIcon: SvgPicture.asset(
@@ -79,13 +87,13 @@ class _SearchScreenState extends State<SearchScreen> {
                                               fit: BoxFit.scaleDown),
                                           border: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(12),
+                                                BorderRadius.circular(12.r),
                                           ))),
                                 ),
                               ],
                             ),
                             SizedBox(
-                              height: 5,
+                              height: 5.h,
                             ),
                             Expanded(
                               child: SingleChildScrollView(
@@ -95,11 +103,11 @@ class _SearchScreenState extends State<SearchScreen> {
                                     Text(
                                       "All Books",
                                       style: appTextStyle(
-                                        size: 30,
+                                        size: 30.sp,
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 15,
+                                      height: 15.h,
                                     ),
                                     GridView.builder(
                                       shrinkWrap: true,
@@ -107,9 +115,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: 2,
-                                              crossAxisSpacing: 10,
+                                              crossAxisSpacing: 10.w,
                                               mainAxisExtent: 280,
-                                              mainAxisSpacing: 10),
+                                              mainAxisSpacing: 10.h),
                                       itemCount: searching
                                           ? filterbooks.length
                                           : books.length,

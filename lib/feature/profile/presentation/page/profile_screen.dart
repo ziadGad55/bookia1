@@ -10,6 +10,7 @@ import 'package:bookia1/feature/profile/presentation/page/Edit%20profile/Edit_pr
 import 'package:bookia1/feature/profile/presentation/page/myOrder/myOrder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -39,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
               appBar: AppBar(
                 title: Text(
                   'Profile',
-                  style: appTextStyle(size: 35),
+                  style: appTextStyle(size: 35.sp),
                 ),
                 centerTitle: true,
                 actions: [
@@ -47,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                     builder: (context, state) {
                       return IconButton(
                         icon: SvgPicture.asset('assets/icons/Frame 15.svg',
-                            height: 25),
+                            height: 25.h),
                         onPressed: () {
                           context.read<ProfileCubit>().logout();
                         },
@@ -69,17 +70,17 @@ class ProfileScreen extends StatelessWidget {
                         Text(
                           '${usersdata?.name}',
                           style: appTextStyle(
-                              size: 30, fontWeight: FontWeight.w600),
+                              size: 30.sp, fontWeight: FontWeight.w600),
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 5),
+                        SizedBox(height: 5.h),
                         Text(
                           '${usersdata?.email}',
                           style: appTextStyle(
-                              size: 20, color: appcolors.dark_gray),
+                              size: 20.sp, color: appcolors.dark_gray),
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 40),
+                        SizedBox(height: 40.h),
                         ListView.separated(
                           shrinkWrap: true,
                           itemCount: profileOptions.length,
@@ -107,20 +108,11 @@ class ProfileScreen extends StatelessWidget {
                                             builder: (context) =>
                                                 EditPassword()));
                                     break;
-                                  case 3:
-                                    // Navigate to FAQ screen
-                                    break;
-                                  case 4:
-                                    // Navigate to Contact Us screen
-                                    break;
-                                  case 5:
-                                    // Navigate to Privacy & Terms screen
-                                    break;
                                 }
                               },
                               child: Container(
                                 width: double.infinity,
-                                height: 60,
+                                height: 50.h,
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4),
@@ -136,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
                                   children: [
                                     Text('${profileOptions[index]}',
                                         style: appTextStyle(
-                                          size: 20,
+                                          size: 20.sp,
                                         )),
                                     Spacer(),
                                     Icon(Icons.arrow_forward_ios),
@@ -147,7 +139,7 @@ class ProfileScreen extends StatelessWidget {
                           },
                           separatorBuilder: (BuildContext context, int index) {
                             return SizedBox(
-                              height: 20,
+                              height: 20.h,
                             );
                           },
                         ),
