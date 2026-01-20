@@ -6,6 +6,7 @@ import 'package:bookia1/feature/wishlist/presentation/cubit/wishlist_cubit_cubit
 import 'package:bookia1/feature/wishlist/presentation/widget/wishlistbook.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Wishlist extends StatelessWidget {
   const Wishlist({super.key});
@@ -53,12 +54,12 @@ class Wishlist extends StatelessWidget {
                             color: appcolors.prime,
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Text(
                             'No Items in Wishlist',
                             style:
-                                appTextStyle(size: 25, color: appcolors.prime),
+                                appTextStyle(size: 25.sp, color: appcolors.prime),
                           ),
                         ],
                       ),
@@ -69,7 +70,7 @@ class Wishlist extends StatelessWidget {
                       separatorBuilder: (BuildContext context, int index) {
                         return Divider(
                           color: Colors.grey,
-                          height: 30,
+                          height: 30.h,
                         );
                       },
                       itemBuilder: (BuildContext context, int index) {

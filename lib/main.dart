@@ -3,15 +3,29 @@ import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:bookia1/core/services/cashing.dart';
 import 'package:bookia1/core/services/dio.dart';
 import 'package:bookia1/feature/auth/presentation/cubit/auth.cubit.dart';
+import 'package:bookia1/feature/cart/presentation/cubit/cubit/cartcubit_cubit.dart';
 import 'package:bookia1/intro/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dioprovider.init();
   await appdata.init();
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<CartCubit>(
+          create: (context) => CartCubit(),
+        ),
+        BlocProvider<AuthCubit>(
+          create: (context) => AuthCubit(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,12 +33,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
-      child: MaterialApp(
+    return ScreenUtilInit(
+       designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) =>
+      MaterialApp(
         theme: ThemeData(
-            appBarTheme: AppBarTheme(
-            ),
+            appBarTheme: AppBarTheme(),
             inputDecorationTheme: InputDecorationTheme(
               fillColor: appcolors.gray,
               filled: true,

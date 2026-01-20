@@ -9,6 +9,7 @@ import 'package:bookia1/feature/home/presentation/cubit/homecubit_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Book extends StatelessWidget {
@@ -36,7 +37,7 @@ class Book extends StatelessWidget {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             leading: back_arrow(context),
-            leadingWidth: 80,
+            leadingWidth: 80.w,
             actions: [
               IconButton(
                 onPressed: () {
@@ -58,34 +59,34 @@ class Book extends StatelessWidget {
                           Hero(
                             tag: book.id ?? '',
                             child: ClipRRect(
-                                borderRadius: BorderRadius.circular(7),
+                                borderRadius: BorderRadius.circular(7.r),
                                 child: CachedNetworkImage(
                                   imageUrl: book.image ?? '',
-                                  height: 270,
+                                  height: 270.h,
                                 )),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Text(
                             book.name ?? '',
-                            style: appTextStyle(size: 25),
+                            style: appTextStyle(size: 25.sp),
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 10.h,
                           ),
                           Text(
                             book.category ?? '',
                             style: appTextStyle(color: appcolors.prime),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Text(
                             book.description ?? '',
                             textAlign: TextAlign.justify,
-                            style: appTextStyle(size: 16),
+                            style: appTextStyle(size: 16.sp),
                           ),
                         ],
                       ),
@@ -96,7 +97,7 @@ class Book extends StatelessWidget {
                     children: [
                       Text(
                         "₹ ${book.priceAfterDiscount}",
-                        style: appTextStyle(size: 25),
+                        style: appTextStyle(size: 25.sp),
                       ),
                       buttom(
                         text: "Add To Cart",
@@ -104,8 +105,8 @@ class Book extends StatelessWidget {
                           context.read<HomeCubit>().addtocart(book.id ?? 0);
                         },
                         color: appcolors.black,
-                        width: 200,
-                        height: 55,
+                        width: 200.w,
+                        height: 55.h,
                       )
                     ],
                   )

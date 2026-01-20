@@ -9,6 +9,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
   BestsellerRespons? BestSellerRespons;
+  BestsellerRespons? AllProdact;
   SliderRospons? sliderRospons;
 
   Future<void> getBestSeller() async {
@@ -39,7 +40,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(addWishlistcartLoading());
     await Homerepo.addtowishlist(productid).then((value) {
       if (value != null) {
-        emit(addWishlistcartLoaded( "Added To Wishlist"));
+        emit(addWishlistcartLoaded("Added To Wishlist"));
       } else {
         emit(addWishlistcartError("error"));
       }
@@ -53,6 +54,18 @@ class HomeCubit extends Cubit<HomeState> {
         emit(addWishlistcartLoaded("Added To Cart"));
       } else {
         emit(addWishlistcartError("error"));
+      }
+    });
+  }
+
+  Future<void> getAllProdact() async {
+    emit(AllprodactLoading());
+    await Homerepo.getAllProdact().then((value) {
+      if (value != null) {
+        AllProdact = value;
+        emit(AllprodactLoaded());
+      } else {
+        emit(AllprodactError("error"));
       }
     });
   }

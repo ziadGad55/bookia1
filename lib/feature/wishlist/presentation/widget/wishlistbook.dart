@@ -3,13 +3,15 @@ import 'package:bookia1/core/widget/buttom.dart';
 import 'package:bookia1/feature/wishlist/data/model/wishlistrespons/datum.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class wishlistbook extends StatelessWidget {
   const wishlistbook({
     super.key,
     required this.book,
-    this.onremove, required this.onaddtocart,
+    this.onremove,
+    required this.onaddtocart,
   });
 
   final Datum book;
@@ -24,12 +26,12 @@ class wishlistbook extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
             child: CachedNetworkImage(
               imageUrl: book.image ?? '',
-              height: 120,
-              width: 100,
+              height: 120.h,
+              width: 100.w,
               fit: BoxFit.cover,
             )),
         SizedBox(
-          width: 20,
+          width: 20.w,
         ),
         Expanded(
           child: Column(
@@ -40,8 +42,8 @@ class wishlistbook extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      book.name ?? '',
-                      style: appTextStyle(size: 20),
+                      book.name ?? '',overflow: TextOverflow.ellipsis,
+                      style: appTextStyle(size: 20.sp),
                     ),
                   ),
                   IconButton(
@@ -53,14 +55,14 @@ class wishlistbook extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Text(
                 ' ₹${book.price}',
-                style: appTextStyle(size: 18),
+                style: appTextStyle(size: 18.sp),
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -68,8 +70,8 @@ class wishlistbook extends StatelessWidget {
                   buttom(
                     text: 'Add To Cart',
                     onPressed: onaddtocart,
-                    height: 45,
-                    width: 185,
+                    height: 40.h,
+                    width: 155.w,
                   ),
                 ],
               )

@@ -4,6 +4,7 @@ class appdata {
   static late SharedPreferences cash;
 
   static String usertoken = 'token';
+  static String myorderid = 'myorderid';
 
   static init() async {
     cash = await SharedPreferences.getInstance();
@@ -25,5 +26,9 @@ class appdata {
 
   static getdata(String key) {
     return cash.get(key);
+  }
+
+  static cleardata(String key) async {
+    await cash.remove(key);
   }
 }

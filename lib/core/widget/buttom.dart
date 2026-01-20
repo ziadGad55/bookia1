@@ -1,6 +1,7 @@
 import 'package:bookia1/core/color/colors.dart';
 import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class buttom extends StatelessWidget {
   const buttom({
@@ -25,7 +26,7 @@ class buttom extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: width ?? double.infinity,
-        height: height ?? 60,
+        height: height ?? 55.h,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: color ?? appcolors.prime,
@@ -40,7 +41,7 @@ class buttom extends StatelessWidget {
             child: Text(
               text,
               style:
-                  appTextStyle(size: 18, color: textColor ?? appcolors.white),
+                  appTextStyle(size: 19.sp, color: textColor ?? appcolors.white),
             )));
   }
 }

@@ -33,7 +33,6 @@ class WishlistCubit extends Cubit<WishlistCubitState> {
     });
   }
 
-
   Future<void> addtocart(int productid) async {
     emit(cartCubitLoading());
     await WishlistRepo.addtocart(productid).then((value) {

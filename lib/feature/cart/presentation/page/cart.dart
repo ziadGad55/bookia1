@@ -2,12 +2,15 @@ import 'package:bookia1/core/color/colors.dart';
 import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:bookia1/core/widget/buttom.dart';
 import 'package:bookia1/core/widget/error.dart';
+import 'package:bookia1/core/widget/loading.dart';
 
 import 'package:bookia1/feature/cart/presentation/cubit/cubit/cartcubit_cubit.dart';
 import 'package:bookia1/feature/cart/presentation/widget/cart.dart';
+import 'package:bookia1/feature/order/presentation/page/place_order.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Cart extends StatelessWidget {
   const Cart({super.key});
@@ -21,13 +24,32 @@ class Cart extends StatelessWidget {
           centerTitle: true,
           title: Text(
             'cart',
-            style: appTextStyle(size: 25),
+            style: appTextStyle(size: 25.sp),
           ),
         ),
         body: BlocConsumer<CartCubit, CartState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is CheckoutLoaded) {
+               Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PlaceOrder(
+                    total: state.total,
+                  ),
+                ),
+              );
+            } else if (state is CartError) {
+              Navigator.pop(context);
+              errortoast(state.massage, context);
+            } else if (state is CheckoutLoading) {
+              loading(context);
+            }
+          },
           builder: (context, state) {
-            if (state is CartLoaded) {
+            if (state is CartLoaded ||
+                state is CartError ||
+                state is CheckoutLoaded) {
               var books =
                   context.read<CartCubit>().cartrespons?.data?.cartItems ?? [];
               return books.isEmpty
@@ -41,23 +63,24 @@ class Cart extends StatelessWidget {
                             color: appcolors.prime,
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Text(
                             'No Items in cart',
                             style:
-                                appTextStyle(size: 25, color: appcolors.prime),
+                                appTextStyle(size: 25.sp, color: appcolors.prime),
                           ),
                         ],
                       ),
                     )
                   : Column(
-                    children: [
-                      Expanded(
-                        child: ListView.separated(
+                      children: [
+                        Expanded(
+                          child: ListView.separated(
                             padding: const EdgeInsets.all(20),
                             itemCount: books.length,
-                            separatorBuilder: (BuildContext context, int index) {
+                            separatorBuilder:
+                                (BuildContext context, int index) {
                               return Divider(
                                 color: Colors.grey,
                                 height: 30,
@@ -82,52 +105,55 @@ class Cart extends StatelessWidget {
                                   }
                                 },
                                 onminus: () {
-                                  if ( 
-                                      (books[index].itemQuantity ?? 0)>1) {
+                                  if ((books[index].itemQuantity ?? 0) > 1) {
                                     context.read<CartCubit>().updatecart(
                                         books[index].itemId ?? 0,
                                         (books[index].itemQuantity ?? 0) - 1);
                                   } else {
                                     errortoast("Cannot Delete More", context);
                                   }
-                        
                                 },
                               );
                             },
                           ),
-                      ),
-                      Column(
-                        children: [
-                          Divider(
-                            color: Colors.grey,
-                            height: 30,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Total: ',
-                                  style: appTextStyle(size: 25,
-                                      color: appcolors.dark_gray),
-                                ),
-                                Text(
-                                  '\$${context.read<CartCubit>().cartrespons?.data?.total}',
-                                  style: appTextStyle(size: 25),
-                                ),
-                              ],
+                        ),
+                        Column(
+                          children: [
+                            Divider(
+                              color: Colors.grey,
+                              height: 30.h,
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: buttom(text: "Checkout", onPressed: (){},),
-                          )
-                        ],
-                      )
-                    ],
-                    
-                  );
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Total: ',
+                                    style: appTextStyle(
+                                        size: 25.sp, color: appcolors.dark_gray),
+                                  ),
+                                  Text(
+                                    '\$${context.read<CartCubit>().cartrespons?.data?.total}',
+                                    style: appTextStyle(size: 25.sp),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: buttom(
+                                text: "Checkout",
+                                onPressed: () async {
+                                  await context.read<CartCubit>().Checkout();
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    );
             } else {
               return Center(
                 child: CircularProgressIndicator(

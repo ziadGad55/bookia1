@@ -1,10 +1,11 @@
-import 'dart:developer';
+
 
 import 'package:bookia1/core/fonts/font_style.dart';
 import 'package:bookia1/core/services/cashing.dart';
 import 'package:bookia1/feature/auth/presentation/pages/welcome/welcome_screen.dart';
 import 'package:bookia1/feature/main/Home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,7 +27,6 @@ class _SplashScreenState extends State<SplashScreen> {
       if (token != null) {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Home()));
-        log(token);
       } else {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Text(
               "Order Your Book Now!",
-              style: appTextStyle(size: 20),
+              style: appTextStyle(size: 20.sp),
             ),
           ],
         ),

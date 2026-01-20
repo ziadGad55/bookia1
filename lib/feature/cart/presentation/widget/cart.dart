@@ -4,15 +4,17 @@ import 'package:bookia1/feature/cart/data/model/cartrespons/cart_item.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class cartbook extends StatelessWidget {
   const cartbook({
     super.key,
     required this.book,
-    this.onremove, required this.onadd, required this.onminus,
+    this.onremove,
+    required this.onadd,
+    required this.onminus,
   });
-
   final CartItem book;
   final Function()? onremove;
   final Function() onadd;
@@ -26,12 +28,12 @@ class cartbook extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
             child: CachedNetworkImage(
               imageUrl: book.itemProductImage ?? '',
-              height: 120,
-              width: 100,
+              height: 120.h,
+              width: 100.w,
               fit: BoxFit.cover,
             )),
         SizedBox(
-          width: 20,
+          width: 20.w,
         ),
         Expanded(
           child: Column(
@@ -42,8 +44,8 @@ class cartbook extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      book.itemProductName ?? '',
-                      style: appTextStyle(size: 20),
+                      book.itemProductName ?? '',overflow: TextOverflow.ellipsis,
+                      style: appTextStyle(size: 20.sp),
                     ),
                   ),
                   IconButton(
@@ -55,14 +57,14 @@ class cartbook extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Text(
                 ' ₹${book.itemProductPriceAfterDiscount}',
-                style: appTextStyle(size: 18),
+                style: appTextStyle(size: 18.sp),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Row(
                 children: [
@@ -76,14 +78,14 @@ class cartbook extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10)),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 10.w,
                   ),
                   Text(
                     book.itemQuantity.toString(),
-                    style: appTextStyle(size: 20),
+                    style: appTextStyle(size: 20.sp),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 10.w,
                   ),
                   FloatingActionButton.small(
                     onPressed: onminus,
