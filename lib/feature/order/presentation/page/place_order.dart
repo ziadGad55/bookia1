@@ -163,7 +163,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           }
                         },
                       ),
-                      SizedBox(height: 150.h),
+                      SizedBox(height: 100.h),
                       BlocBuilder<OrdercubitCubit, OrdercubitState>(
                         builder: (context, state) {
                           return bottom_of_widget(

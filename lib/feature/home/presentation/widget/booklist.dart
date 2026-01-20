@@ -28,7 +28,7 @@ class booklist extends StatelessWidget {
               color: Color(0xffF5EFE1),
               borderRadius: BorderRadius.circular(10.r)),
           child: Padding(
-            padding:  EdgeInsets.all(6.r),
+            padding:  EdgeInsets.symmetric(horizontal:3.r,vertical: 6.r ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -52,7 +52,7 @@ class booklist extends StatelessWidget {
                 ),
                 Text(
                   book.name ?? '',
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: appTextStyle(size: 20.sp),
                 ),
@@ -70,7 +70,7 @@ class booklist extends StatelessWidget {
                       text: "Buy",
                       onPressed: () {},
                       color: appcolors.black,
-                      width: 68.w,
+                      width: 75.w,
                       height: 30.h,
                     )
                   ],

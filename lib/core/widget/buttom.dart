@@ -41,7 +41,7 @@ class buttom extends StatelessWidget {
             child: Text(
               text,
               style:
-                  appTextStyle(size: 20.sp, color: textColor ?? appcolors.white),
+                  appTextStyle(size: 19.sp, color: textColor ?? appcolors.white),
             )));
   }
 }
