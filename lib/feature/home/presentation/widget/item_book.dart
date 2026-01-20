@@ -45,7 +45,7 @@ class item_book extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10.w,
+                    crossAxisSpacing: 8.w,
                     mainAxisExtent: 280,
                     mainAxisSpacing: 10.h),
                 itemCount: books.length,
@@ -131,7 +131,7 @@ class booklist extends StatelessWidget {
                       text: "Buy",
                       onPressed: () {},
                       color: appcolors.black,
-                      width: 75.w,
+                      width: 77.w,
                       height: 30.h,
                     )
                   ],

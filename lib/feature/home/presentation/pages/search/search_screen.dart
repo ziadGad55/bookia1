@@ -42,7 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 automaticallyImplyLeading: false,
               ),
               body: Padding(
-                  padding:  EdgeInsets.all(18.r),
+                  padding:  EdgeInsets.all(14.r),
                   child: BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       var books = context
@@ -115,7 +115,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: 2,
-                                              crossAxisSpacing: 10.w,
+                                              crossAxisSpacing: 8.w,
                                               mainAxisExtent: 280,
                                               mainAxisSpacing: 10.h),
                                       itemCount: searching

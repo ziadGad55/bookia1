@@ -70,7 +70,7 @@ class booklist extends StatelessWidget {
                       text: "Buy",
                       onPressed: () {},
                       color: appcolors.black,
-                      width: 75.w,
+                      width: 78.w,
                       height: 30.h,
                     )
                   ],
