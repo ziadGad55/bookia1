@@ -152,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 45.h,
+                        height: 50.h,
                       ),
                       buttom(
                         text: "Login",
@@ -164,87 +164,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                       ),
+                      
+                      
                       SizedBox(
-                        height: 25.h,
-                      ),
-                      Stack(
-                        children: [
-                          Divider(
-                            color: appcolors.gray,
-                          ),
-                          Center(
-                            child: Container(
-                              width: 90.w,
-                              height: 19.h,
-                              color: Colors.white,
-                              child: Text(
-                                "Or Login with",
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: appcolors.gray,
-                                  )),
-                              child: SvgPicture.asset(
-                                "assets/icons/facebook_ic.svg",
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 15.h,
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: appcolors.white,
-                                  border: Border.all(
-                                    color: appcolors.gray,
-                                  )),
-                              child: SvgPicture.asset(
-                                  "assets/icons/google_ic.svg"),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: appcolors.gray,
-                                  )),
-                              child: Icon(
-                                Icons.apple,
-                                size: 28,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 80.h,
+                        height: 180.h,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
