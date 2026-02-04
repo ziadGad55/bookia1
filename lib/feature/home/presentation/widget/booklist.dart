@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class booklist extends StatelessWidget {
-  const booklist({
+  booklist({
     super.key,
     required this.book,
   });
@@ -28,7 +28,7 @@ class booklist extends StatelessWidget {
               color: Color(0xffF5EFE1),
               borderRadius: BorderRadius.circular(10.r)),
           child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal:3.r,vertical: 6.r ),
+            padding: EdgeInsets.all(6.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -64,13 +64,13 @@ class booklist extends StatelessWidget {
                   children: [
                     Text(
                       "₹ ${book.priceAfterDiscount}",
-                      style: appTextStyle(size: 20.sp),
+                      style: appTextStyle(size: 20),
                     ),
                     buttom(
                       text: "Buy",
                       onPressed: () {},
                       color: appcolors.black,
-                      width: 78.w,
+                      width: 77.w,
                       height: 30.h,
                     )
                   ],

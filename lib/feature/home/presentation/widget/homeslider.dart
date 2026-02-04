@@ -1,10 +1,12 @@
 import 'package:bookia1/core/color/colors.dart';
 import 'package:bookia1/feature/home/presentation/cubit/homecubit_cubit.dart';
+import 'package:bookia1/feature/home/presentation/widget/sliderskeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:redacted/redacted.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class homeslider extends StatefulWidget {
@@ -79,10 +81,13 @@ class _homesliderState extends State<homeslider> {
             ],
           );
         } else {
-          return Center(
-              child: CircularProgressIndicator(
-            color: appcolors.prime,
-          ));
+          return sliderskeleton().redacted(
+            context: context,
+            redact: true,
+            configuration: RedactedConfiguration(
+              animationDuration: const Duration(milliseconds: 800), 
+            ),
+          );
         }
       },
     );

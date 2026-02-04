@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:redacted/redacted.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -36,35 +37,37 @@ class ProfileScreen extends StatelessWidget {
           }
         },
         child: SafeArea(
-          child: Scaffold(
-              appBar: AppBar(
-                title: Text(
-                  'Profile',
-                  style: appTextStyle(size: 35.sp),
-                ),
-                centerTitle: true,
-                actions: [
-                  BlocBuilder<ProfileCubit, ProfileState>(
-                    builder: (context, state) {
-                      return IconButton(
-                        icon: SvgPicture.asset('assets/icons/Frame 15.svg',
-                            height: 25.h),
-                        onPressed: () {
-                          context.read<ProfileCubit>().logout();
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
-              body: BlocBuilder<ProfileCubit, ProfileState>(
+            child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Profile',
+              style: appTextStyle(size: 35.sp),
+            ),
+            centerTitle: true,
+            actions: [
+              BlocBuilder<ProfileCubit, ProfileState>(
                 builder: (context, state) {
-                 var usersdata= context.read<ProfileCubit>().userdata?.data;
-                 if(state is ProfileLoaded){
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 40),
-                    child: Column(
+                  return IconButton(
+                    icon: SvgPicture.asset('assets/icons/Frame 15.svg',
+                        height: 25.h),
+                    onPressed: () {
+                      context.read<ProfileCubit>().logout();
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BlocBuilder<ProfileCubit, ProfileState>(
+                    builder: (context, state) {
+                  var usersdata = context.read<ProfileCubit>().userdata?.data;
+                  if (state is ProfileLoaded) {
+                    return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -80,82 +83,96 @@ class ProfileScreen extends StatelessWidget {
                               size: 20.sp, color: appcolors.dark_gray),
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 40.h),
-                        ListView.separated(
-                          shrinkWrap: true,
-                          itemCount: profileOptions.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              onTap: () {
-                                switch (index) {
-                                  case 0:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Myorder()));
-                                    break;
-                                  case 1:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditProfile()));
-                                    break;
-                                  case 2:
-                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditPassword()));
-                                    break;
-                                }
-                              },
-                              child: Container(
-                                width: double.infinity,
-                                height: 50.h,
-                                padding: EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xff8A959E).withOpacity(0.2),
-                                      blurRadius: 8,
-                                      offset: Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text('${profileOptions[index]}',
-                                        style: appTextStyle(
-                                          size: 20.sp,
-                                        )),
-                                    Spacer(),
-                                    Icon(Icons.arrow_forward_ios),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(
-                              height: 20.h,
-                            );
-                          },
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // الاسم
+                        Container(
+                          height: 30.h,
+                          width: 180.w,
+                          color: Colors.grey.shade300,
+                        ),
+
+                        SizedBox(height: 5.h),
+
+                        // الإيميل
+                        Container(
+                          height: 20.h,
+                          width: 220.w,
+                          color: Colors.grey.shade300,
                         ),
                       ],
-                    ),
-                  );
-                 }else{
-                 return Center(child:CircularProgressIndicator(
-                    color: appcolors.prime,
-                  ) ,);
-                 }
-
-                }
-              )
-              ),
-        ),
+                    ).redacted(context: context, redact: true);
+                  }
+                }),
+                SizedBox(height: 40.h),
+                ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: profileOptions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        switch (index) {
+                          case 0:
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Myorder()));
+                            break;
+                          case 1:
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfile()));
+                            break;
+                          case 2:
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditPassword()));
+                            break;
+                        }
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 50.h,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xff8A959E).withOpacity(0.2),
+                              blurRadius: 8,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            Text('${profileOptions[index]}',
+                                style: appTextStyle(
+                                  size: 20.sp,
+                                )),
+                            Spacer(),
+                            Icon(Icons.arrow_forward_ios),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      height: 20.h,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        )),
       ),
     );
   }

@@ -4,9 +4,11 @@ import 'package:bookia1/core/widget/error.dart';
 import 'package:bookia1/core/widget/loading.dart';
 import 'package:bookia1/feature/wishlist/presentation/cubit/wishlist_cubit_cubit.dart';
 import 'package:bookia1/feature/wishlist/presentation/widget/wishlistbook.dart';
+import 'package:bookia1/feature/wishlist/presentation/widget/wishlistskeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:redacted/redacted.dart';
 
 class Wishlist extends StatelessWidget {
   const Wishlist({super.key});
@@ -58,8 +60,8 @@ class Wishlist extends StatelessWidget {
                           ),
                           Text(
                             'No Items in Wishlist',
-                            style:
-                                appTextStyle(size: 25.sp, color: appcolors.prime),
+                            style: appTextStyle(
+                                size: 25.sp, color: appcolors.prime),
                           ),
                         ],
                       ),
@@ -90,11 +92,13 @@ class Wishlist extends StatelessWidget {
                       },
                     );
             } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: appcolors.prime,
-                ),
-              );
+              return wishlistskeleton().redacted(
+                  context: context,
+                  redact: true,
+                  configuration: RedactedConfiguration(
+                    animationDuration:
+                        const Duration(milliseconds: 800), //default
+                  ));
             }
           },
         ),

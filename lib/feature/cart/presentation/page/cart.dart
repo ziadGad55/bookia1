@@ -5,12 +5,14 @@ import 'package:bookia1/core/widget/error.dart';
 import 'package:bookia1/core/widget/loading.dart';
 
 import 'package:bookia1/feature/cart/presentation/cubit/cubit/cartcubit_cubit.dart';
+import 'package:bookia1/feature/cart/presentation/widget/cardskeleton.dart';
 import 'package:bookia1/feature/cart/presentation/widget/cart.dart';
 import 'package:bookia1/feature/order/presentation/page/place_order.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:redacted/redacted.dart';
 
 class Cart extends StatelessWidget {
   const Cart({super.key});
@@ -30,7 +32,7 @@ class Cart extends StatelessWidget {
         body: BlocConsumer<CartCubit, CartState>(
           listener: (context, state) {
             if (state is CheckoutLoaded) {
-               Navigator.pop(context);
+              Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -67,8 +69,8 @@ class Cart extends StatelessWidget {
                           ),
                           Text(
                             'No Items in cart',
-                            style:
-                                appTextStyle(size: 25.sp, color: appcolors.prime),
+                            style: appTextStyle(
+                                size: 25.sp, color: appcolors.prime),
                           ),
                         ],
                       ),
@@ -132,7 +134,8 @@ class Cart extends StatelessWidget {
                                   Text(
                                     'Total: ',
                                     style: appTextStyle(
-                                        size: 25.sp, color: appcolors.dark_gray),
+                                        size: 25.sp,
+                                        color: appcolors.dark_gray),
                                   ),
                                   Text(
                                     '\$${context.read<CartCubit>().cartrespons?.data?.total}',
@@ -155,11 +158,7 @@ class Cart extends StatelessWidget {
                       ],
                     );
             } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: appcolors.prime,
-                ),
-              );
+              return cardskeleton().redacted(context: context, redact: true);
             }
           },
         ),
