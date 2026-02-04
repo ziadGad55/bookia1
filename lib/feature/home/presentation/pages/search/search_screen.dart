@@ -4,6 +4,7 @@ import 'package:bookia1/core/widget/arrow.dart';
 import 'package:bookia1/feature/home/data/model/bestseller_respons/product.dart';
 import 'package:bookia1/feature/home/presentation/cubit/homecubit_cubit.dart';
 import 'package:bookia1/feature/home/presentation/widget/booklist.dart';
+import 'package:bookia1/feature/home/presentation/widget/searchskeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +24,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void dispose() {
-
     searchController.dispose();
     super.dispose();
   }
@@ -42,7 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 automaticallyImplyLeading: false,
               ),
               body: Padding(
-                  padding:  EdgeInsets.all(14.r),
+                  padding: EdgeInsets.all(14.r),
                   child: BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       var books = context
@@ -136,10 +136,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ],
                         );
                       } else {
-                        return Center(
-                            child: CircularProgressIndicator(
-                          color: appcolors.prime,
-                        ));
+                        return searchskeleton();
                       }
                     },
                   )))),
