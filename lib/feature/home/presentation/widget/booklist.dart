@@ -62,16 +62,19 @@ class booklist extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "₹ ${book.priceAfterDiscount}",
-                      style: appTextStyle(size: 20),
+                    Expanded(
+                      child: Text(
+                        "₹ ${book.priceAfterDiscount}",
+                        style: appTextStyle(size: 18.sp),
+                      ),
                     ),
-                    buttom(
-                      text: "Buy",
-                      onPressed: () {},
-                      color: appcolors.black,
-                      width: 77.w,
-                      height: 30.h,
+                    Expanded(
+                      child: buttom(
+                        text: "Buy",
+                        onPressed: () {},
+                        color: appcolors.black,
+                        height: 25.h,
+                      ),
                     )
                   ],
                 )

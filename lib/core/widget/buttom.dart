@@ -25,15 +25,15 @@ class buttom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: width ?? double.infinity,
-        height: height ?? 55.h,
+        width: width?.w ?? double.infinity,
+        height: height?.h ?? 55.h,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: color ?? appcolors.prime,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: isborder == true
-                    ? BorderSide(color: appcolors.black, width: 1)
+                    ? BorderSide(color: appcolors.black, width: 1.w)
                     : BorderSide.none,
               ),
             ),
@@ -41,7 +41,7 @@ class buttom extends StatelessWidget {
             child: Text(
               text,
               style:
-                  appTextStyle(size: 19.sp, color: textColor ?? appcolors.white),
+                  appTextStyle(size: 18.spMin, color: textColor ?? appcolors.white),
             )));
   }
 }
